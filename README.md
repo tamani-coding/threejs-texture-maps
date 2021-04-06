@@ -1,1 +1,3 @@
-# threejs-texture-maps
+`npm install`
+
+`npm run start`
