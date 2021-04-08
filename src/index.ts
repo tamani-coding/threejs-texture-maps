@@ -94,72 +94,86 @@ for (var i = -50; i <= 50; i += 5) {
     }
 }
 
-const box1 = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), new THREE.MeshStandardMaterial({ map: brickWallbasecolor }))
-box1.position.y = 3
-box1.position.x = -8
-scene.add(box1)
+const plane1 = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), new THREE.MeshStandardMaterial({ map: brickWallbasecolor }))
+plane1.position.y = 3
+plane1.position.x = -8
+scene.add(plane1)
 
-const box2 = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), new THREE.MeshStandardMaterial({ map: brickWallbasecolor, normalMap: brickWallnormalMap }))
-box2.position.y = 3
-box2.position.x = -5.8
-scene.add(box2)
+const plane2 = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), new THREE.MeshStandardMaterial({ map: brickWallbasecolor, normalMap: brickWallnormalMap }))
+plane2.position.y = 3
+plane2.position.x = -5.8
+scene.add(plane2)
 
-const box3 = new THREE.Mesh(new THREE.PlaneGeometry(2, 2, 512, 512), new THREE.MeshStandardMaterial({ map: brickWallbasecolor, normalMap: brickWallnormalMap, displacementMap: brickWallheightMap, displacementScale: 0.05 }))
-box3.position.y = 3
-box3.position.x = -3.6
-scene.add(box3)
+const plane3 = new THREE.Mesh(new THREE.PlaneGeometry(2, 2, 512, 512), new THREE.MeshStandardMaterial({ map: brickWallbasecolor, normalMap: brickWallnormalMap, displacementMap: brickWallheightMap, displacementScale: 0.05 }))
+plane3.position.y = 3
+plane3.position.x = -3.6
+scene.add(plane3)
 
-const box4 = new THREE.Mesh(new THREE.PlaneGeometry(2, 2, 512, 512), new THREE.MeshStandardMaterial({ map: brickWallbasecolor, normalMap: brickWallnormalMap, displacementMap: brickWallheightMap, displacementScale: 0.05, roughnessMap: brickWallroughnessMap, roughness: 0.25  }))
-box4.position.y = 3
-box4.position.x = -1.4
-scene.add(box4)
+const plane4 = new THREE.Mesh(new THREE.PlaneGeometry(2, 2, 512, 512), new THREE.MeshStandardMaterial({ map: brickWallbasecolor, normalMap: brickWallnormalMap, displacementMap: brickWallheightMap, displacementScale: 0.05, roughnessMap: brickWallroughnessMap, roughness: 0.25  }))
+plane4.position.y = 3
+plane4.position.x = -1.4
+scene.add(plane4)
 
-const box5 = new THREE.Mesh(new THREE.PlaneGeometry(2, 2, 512, 512), new THREE.MeshStandardMaterial({ map: brickWallbasecolor, normalMap: brickWallnormalMap, displacementMap: brickWallheightMap, displacementScale: 0.05, roughnessMap: brickWallroughnessMap, roughness: 0.25, aoMap: brickWallambientOcclusionMap }))
-box5.geometry.attributes.uv2 = box5.geometry.attributes.uv;
-box5.position.y = 3
-box5.position.x = 0.8
-scene.add(box5)
+const plane5 = new THREE.Mesh(new THREE.PlaneGeometry(2, 2, 512, 512), new THREE.MeshStandardMaterial({ map: brickWallbasecolor, normalMap: brickWallnormalMap, displacementMap: brickWallheightMap, displacementScale: 0.05, roughnessMap: brickWallroughnessMap, roughness: 0.25, aoMap: brickWallambientOcclusionMap }))
+plane5.geometry.attributes.uv2 = plane5.geometry.attributes.uv;
+plane5.position.y = 3
+plane5.position.x = 0.8
+scene.add(plane5)
 
-const sphere0 = new THREE.Mesh(new THREE.SphereGeometry(1, 512, 512), new THREE.MeshStandardMaterial({ map: brickWallbasecolor, normalMap: brickWallnormalMap, displacementMap: brickWallheightMap, displacementScale: 0.05, roughnessMap: brickWallroughnessMap, roughness: 0.25, aoMap: brickWallambientOcclusionMap }))
+const sphere0 = new THREE.Mesh(new THREE.SphereGeometry(1, 512, 512), new THREE.MeshStandardMaterial({ map: brickWallbasecolor, normalMap: brickWallnormalMap, displacementMap: brickWallheightMap, displacementScale: 0.05, roughnessMap: brickWallroughnessMap, roughness: 1, aoMap: brickWallambientOcclusionMap }))
 sphere0.geometry.attributes.uv2 = sphere0.geometry.attributes.uv
 sphere0.position.y = 3
 sphere0.position.x = -4
 sphere0.position.z = 3
 scene.add(sphere0)
 
-const sphere1 = new THREE.Mesh(new THREE.SphereGeometry(1, 512, 512), new THREE.MeshStandardMaterial({ map: metalTilesbasecolor, normalMap: metalTilesnormalMap, displacementMap: metalTilesheightMap, displacementScale: 0.08, roughnessMap: metalTilesroughnessMap, roughness: 0.5, aoMap: metalTilesambientOcclusionMap, metalnessMap: metalTilesmetallic }))
+const cubeRenderTarget = new THREE.WebGLCubeRenderTarget( 128, {
+    format: THREE.RGBFormat,
+    generateMipmaps: true,
+    minFilter: THREE.LinearMipmapLinearFilter,
+    encoding: THREE.sRGBEncoding
+} );
+
+const cubeCamera = new THREE.CubeCamera( 1, 10000, cubeRenderTarget );
+
+const sphere1 = new THREE.Mesh(new THREE.SphereGeometry(1, 512, 512), new THREE.MeshStandardMaterial({ map: metalTilesbasecolor, normalMap: metalTilesnormalMap, displacementMap: metalTilesheightMap, displacementScale: 0.08, roughnessMap: metalTilesroughnessMap, roughness: 1, aoMap: metalTilesambientOcclusionMap, metalnessMap: metalTilesmetallic, envMap: cubeRenderTarget.texture }))
 sphere1.geometry.attributes.uv2 = sphere1.geometry.attributes.uv
 sphere1.position.y = 3
 sphere1.position.x = 0
 sphere1.position.z = 3
+sphere1.add(cubeCamera)
 scene.add(sphere1)
 
-const sphere2 = new THREE.Mesh(new THREE.SphereGeometry(1, 512, 512), new THREE.MeshStandardMaterial({ map: stylizedBirckbasecolor, normalMap: stylizedBircknormalMap, displacementMap: stylizedBirckheightMap, displacementScale: 0.05, roughnessMap: stylizedBirckroughnessMap, roughness: 0.5, aoMap: stylizedBirckambientOcclusionMap }))
+const sphere2 = new THREE.Mesh(new THREE.SphereGeometry(1, 512, 512), new THREE.MeshStandardMaterial({ map: stylizedBirckbasecolor, normalMap: stylizedBircknormalMap, displacementMap: stylizedBirckheightMap, displacementScale: 0.05, roughnessMap: stylizedBirckroughnessMap, roughness: 1, aoMap: stylizedBirckambientOcclusionMap }))
 sphere2.geometry.attributes.uv2 = sphere2.geometry.attributes.uv
 sphere2.position.y = 3
 sphere2.position.x = -4
 sphere2.position.z = 6
+// sphere2.add(cubeCamera)
 scene.add(sphere2)
 
-const sphere3 = new THREE.Mesh(new THREE.SphereGeometry(1, 512, 512), new THREE.MeshStandardMaterial({ map: metalPlatebasecolor, normalMap: metalPlatenormalMap, displacementMap: metalPlateheightMap, displacementScale: 0.08, roughnessMap: metalPlateroughnessMap, roughness: 0.5, aoMap: metalPlateambientOcclusionMap, metalnessMap: metalPlatemetallic }))
+const sphere3 = new THREE.Mesh(new THREE.SphereGeometry(1, 512, 512), new THREE.MeshStandardMaterial({ map: metalPlatebasecolor, normalMap: metalPlatenormalMap, displacementMap: metalPlateheightMap, displacementScale: 0.08, roughnessMap: metalPlateroughnessMap, roughness: 1, aoMap: metalPlateambientOcclusionMap, metalnessMap: metalPlatemetallic }))
 sphere3.geometry.attributes.uv2 = sphere3.geometry.attributes.uv
 sphere3.position.y = 3
 sphere3.position.x = 0
 sphere3.position.z = 6
+// sphere3.add(cubeCamera)
 scene.add(sphere3)
 
-const sphere4 = new THREE.Mesh(new THREE.SphereGeometry(1, 512, 512), new THREE.MeshStandardMaterial({ map: rocksHexagonbasecolor, normalMap: rocksHexagonnormalMap, displacementMap: rocksHexagonheightMap, displacementScale: 0.1, roughnessMap: rocksHexagonroughnessMap, roughness: 0.8, aoMap: rocksHexagonambientOcclusionMap }))
+const sphere4 = new THREE.Mesh(new THREE.SphereGeometry(1, 512, 512), new THREE.MeshStandardMaterial({ map: rocksHexagonbasecolor, normalMap: rocksHexagonnormalMap, displacementMap: rocksHexagonheightMap, displacementScale: 0.1, roughnessMap: rocksHexagonroughnessMap, roughness: 1, aoMap: rocksHexagonambientOcclusionMap }))
 sphere4.geometry.attributes.uv2 = sphere4.geometry.attributes.uv
 sphere4.position.y = 3
 sphere4.position.x = -4
 sphere4.position.z = 9
+// sphere4.add(cubeCamera)
 scene.add(sphere4)
 
-const sphere5 = new THREE.Mesh(new THREE.SphereGeometry(1, 512, 512), new THREE.MeshStandardMaterial({ color: 0xffff66, map: lavabasecolor, normalMap: lavanormalMap, displacementMap: lavaheightMap, displacementScale: 0.1, roughnessMap: lavaroughnessMap, roughness: 0.8, aoMap: lavaambientOcclusionMap, emissiveMap: lavaemissive }))
+const sphere5 = new THREE.Mesh(new THREE.SphereGeometry(1, 512, 512), new THREE.MeshStandardMaterial({ color: 0xffff66, map: lavabasecolor, normalMap: lavanormalMap, displacementMap: lavaheightMap, displacementScale: 0.1, roughnessMap: lavaroughnessMap, roughness: 1, aoMap: lavaambientOcclusionMap, emissiveMap: lavaemissive }))
 sphere5.geometry.attributes.uv2 = sphere5.geometry.attributes.uv
 sphere5.position.y = 3
 sphere5.position.x = 0
 sphere5.position.z = 9
+// sphere5.add(cubeCamera)
 scene.add(sphere5)
 
 // DIRECTIONAL LIGHT
@@ -178,6 +192,8 @@ function animate() {
     directionalLight.position.z = Math.abs( Math.cos(time * 0.7) ) * 20;
 
     controls.update();
+
+    cubeCamera.update( renderer, scene );
 
     renderer.render(scene, camera);
     requestAnimationFrame(animate);
