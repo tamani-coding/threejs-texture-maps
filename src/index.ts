@@ -26,7 +26,7 @@ window.addEventListener('resize', onWindowResize);
 
 // INIT CAMERA
 camera.position.z = 15;
-camera.position.x = 3;
+camera.position.x = -4;
 camera.position.y = 6;
 camera.lookAt(0, 0, -20)
 
@@ -43,19 +43,6 @@ const brickWallnormalMap = textureLoader.load("./Brick_Wall_017_normal.jpg");
 const brickWallheightMap = textureLoader.load("./Brick_Wall_017_height.png");
 const brickWallroughnessMap = textureLoader.load("./Brick_Wall_017_roughness.jpg");
 const brickWallambientOcclusionMap = textureLoader.load("./Brick_Wall_017_ambientOcclusion.jpg");
-
-const stylizedBirckbasecolor = textureLoader.load("./Stylized_Bricks_001_basecolor.jpg");
-const stylizedBircknormalMap = textureLoader.load("./Stylized_Bricks_001_normal.jpg");
-const stylizedBirckheightMap = textureLoader.load("./Stylized_Bricks_001_height.png");
-const stylizedBirckroughnessMap = textureLoader.load("./Stylized_Bricks_001_roughness.jpg");
-const stylizedBirckambientOcclusionMap = textureLoader.load("./Stylized_Bricks_001_ambientOcclusion.jpg");
-
-const metalPlatebasecolor = textureLoader.load("./Metal_Plate_047_basecolor.jpg");
-const metalPlatenormalMap = textureLoader.load("./Metal_Plate_047_normal.jpg");
-const metalPlateheightMap = textureLoader.load("./Metal_Plate_047_height.png");
-const metalPlateroughnessMap = textureLoader.load("./Metal_Plate_047_roughness.jpg");
-const metalPlateambientOcclusionMap = textureLoader.load("./Metal_Plate_047_ambientOcclusion.jpg");
-const metalPlatemetallic = textureLoader.load("./Metal_Plate_047_metallic.jpg");
 
 const rocksHexagonbasecolor = textureLoader.load("./Rocks_Hexagons_001_basecolor.jpg");
 const rocksHexagonnormalMap = textureLoader.load("./Rocks_Hexagons_001_normal.jpg");
@@ -114,13 +101,6 @@ plane5.position.y = 3
 plane5.position.x = 0.8
 scene.add(plane5)
 
-const sphere0 = new THREE.Mesh(new THREE.SphereGeometry(1, 512, 512), new THREE.MeshStandardMaterial({ map: brickWallbasecolor, normalMap: brickWallnormalMap, displacementMap: brickWallheightMap, displacementScale: 0.05, roughnessMap: brickWallroughnessMap, roughness: 1, aoMap: brickWallambientOcclusionMap }))
-sphere0.geometry.attributes.uv2 = sphere0.geometry.attributes.uv
-sphere0.position.y = 3
-sphere0.position.x = -4
-sphere0.position.z = 3
-scene.add(sphere0)
-
 const cubeRenderTarget = new THREE.WebGLCubeRenderTarget( 128, {
     format: THREE.RGBFormat,
     generateMipmaps: true,
@@ -133,22 +113,10 @@ const cubeCamera = new THREE.CubeCamera( 1, 10000, cubeRenderTarget );
 const sphere1 = new THREE.Mesh(new THREE.SphereGeometry(1, 512, 512), new THREE.MeshStandardMaterial({ map: metalTilesbasecolor, normalMap: metalTilesnormalMap, displacementMap: metalTilesheightMap, displacementScale: 0.08, roughnessMap: metalTilesroughnessMap, roughness: 1, aoMap: metalTilesambientOcclusionMap, metalnessMap: metalTilesmetallic, metalness: 0.8, envMap: cubeRenderTarget.texture }))
 sphere1.geometry.attributes.uv2 = sphere1.geometry.attributes.uv
 sphere1.position.y = 3
-sphere1.position.x = 0
-sphere1.position.z = 3
+sphere1.position.x = -3
+sphere1.position.z = 5
 sphere1.add(cubeCamera)
 scene.add(sphere1)
-
-const sphere2 = new THREE.Mesh(new THREE.SphereGeometry(1, 512, 512), new THREE.MeshStandardMaterial({ map: stylizedBirckbasecolor, normalMap: stylizedBircknormalMap, displacementMap: stylizedBirckheightMap, displacementScale: 0.05, roughnessMap: stylizedBirckroughnessMap, roughness: 1, aoMap: stylizedBirckambientOcclusionMap }))
-sphere2.position.y = 3
-sphere2.position.x = -4
-sphere2.position.z = 6
-scene.add(sphere2)
-
-const sphere3 = new THREE.Mesh(new THREE.SphereGeometry(1, 512, 512), new THREE.MeshStandardMaterial({ map: metalPlatebasecolor, normalMap: metalPlatenormalMap, displacementMap: metalPlateheightMap, displacementScale: 0.08, roughnessMap: metalPlateroughnessMap, roughness: 1, aoMap: metalPlateambientOcclusionMap, metalnessMap: metalPlatemetallic }))
-sphere3.position.y = 3
-sphere3.position.x = 0
-sphere3.position.z = 6
-scene.add(sphere3)
 
 const sphere4 = new THREE.Mesh(new THREE.SphereGeometry(1, 512, 512), new THREE.MeshStandardMaterial({ map: rocksHexagonbasecolor, normalMap: rocksHexagonnormalMap, displacementMap: rocksHexagonheightMap, displacementScale: 0.1, roughnessMap: rocksHexagonroughnessMap, roughness: 1, aoMap: rocksHexagonambientOcclusionMap }))
 sphere4.position.y = 3
