@@ -64,7 +64,7 @@ const rocksHexagonroughnessMap = textureLoader.load("./Rocks_Hexagons_001_roughn
 const rocksHexagonambientOcclusionMap = textureLoader.load("./Rocks_Hexagons_001_ambientOcclusion.jpg");
 
 const lavabasecolor = textureLoader.load("./Lava_005_COLOR.jpg");
-const lavanormalMap = textureLoader.load("./LAVA_005_NORM.jpg");
+const lavanormalMap = textureLoader.load("./Lava_005_NORM.jpg");
 const lavaheightMap = textureLoader.load("./Lava_005_DISP.png");
 const lavaroughnessMap = textureLoader.load("./Lava_005_ROUGH.jpg");
 const lavaambientOcclusionMap = textureLoader.load("./Lava_005_OCC.jpg");
