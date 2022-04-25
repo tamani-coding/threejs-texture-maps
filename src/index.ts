@@ -44,12 +44,6 @@ const brickWallheightMap = textureLoader.load("./Brick_Wall_017_height.png");
 const brickWallroughnessMap = textureLoader.load("./Brick_Wall_017_roughness.jpg");
 const brickWallambientOcclusionMap = textureLoader.load("./Brick_Wall_017_ambientOcclusion.jpg");
 
-const rocksHexagonbasecolor = textureLoader.load("./Rocks_Hexagons_001_basecolor.jpg");
-const rocksHexagonnormalMap = textureLoader.load("./Rocks_Hexagons_001_normal.jpg");
-const rocksHexagonheightMap = textureLoader.load("./Rocks_Hexagons_001_height.png");
-const rocksHexagonroughnessMap = textureLoader.load("./Rocks_Hexagons_001_roughness.jpg");
-const rocksHexagonambientOcclusionMap = textureLoader.load("./Rocks_Hexagons_001_ambientOcclusion.jpg");
-
 const lavabasecolor = textureLoader.load("./Lava_005_COLOR.jpg");
 const lavanormalMap = textureLoader.load("./Lava_005_NORM.jpg");
 const lavaheightMap = textureLoader.load("./Lava_005_DISP.png");
@@ -113,12 +107,6 @@ sphere1.position.x = -3
 sphere1.position.z = 5
 sphere1.add(cubeCamera)
 scene.add(sphere1)
-
-const sphere4 = new THREE.Mesh(new THREE.SphereGeometry(1, 512, 512), new THREE.MeshStandardMaterial({ map: rocksHexagonbasecolor, normalMap: rocksHexagonnormalMap, displacementMap: rocksHexagonheightMap, displacementScale: 0.1, roughnessMap: rocksHexagonroughnessMap, roughness: 1, aoMap: rocksHexagonambientOcclusionMap }))
-sphere4.position.y = 3
-sphere4.position.x = -4
-sphere4.position.z = 9
-scene.add(sphere4)
 
 const sphere5 = new THREE.Mesh(new THREE.SphereGeometry(1, 512, 512), new THREE.MeshStandardMaterial({ color: 0xffff66, map: lavabasecolor, normalMap: lavanormalMap, displacementMap: lavaheightMap, displacementScale: 0.1, roughnessMap: lavaroughnessMap, roughness: 1, aoMap: lavaambientOcclusionMap, emissiveMap: lavaemissive }))
 sphere5.position.y = 3
