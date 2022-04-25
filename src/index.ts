@@ -63,12 +63,12 @@ const rocksHexagonheightMap = textureLoader.load("./Rocks_Hexagons_001_height.pn
 const rocksHexagonroughnessMap = textureLoader.load("./Rocks_Hexagons_001_roughness.jpg");
 const rocksHexagonambientOcclusionMap = textureLoader.load("./Rocks_Hexagons_001_ambientOcclusion.jpg");
 
-const lavabasecolor = textureLoader.load("./LAVA_005_COLOR.jpg");
+const lavabasecolor = textureLoader.load("./Lava_005_COLOR.jpg");
 const lavanormalMap = textureLoader.load("./LAVA_005_NORM.jpg");
-const lavaheightMap = textureLoader.load("./LAVA_005_DISP.png");
-const lavaroughnessMap = textureLoader.load("./LAVA_005_ROUGH.jpg");
-const lavaambientOcclusionMap = textureLoader.load("./LAVA_005_OCC.jpg");
-const lavaemissive = textureLoader.load("./LAVA_005_MASK.jpg");
+const lavaheightMap = textureLoader.load("./Lava_005_DISP.png");
+const lavaroughnessMap = textureLoader.load("./Lava_005_ROUGH.jpg");
+const lavaambientOcclusionMap = textureLoader.load("./Lava_005_OCC.jpg");
+const lavaemissive = textureLoader.load("./Lava_005_MASK.jpg");
 
 const metalTilesbasecolor = textureLoader.load("./Metal_Tiles_003_basecolor.jpg");
 const metalTilesnormalMap = textureLoader.load("./Metal_Tiles_003_normal.jpg");
