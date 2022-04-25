@@ -38,12 +38,6 @@ scene.background = new THREE.Color(0xffffff);
 const textureLoader = new THREE.TextureLoader();
 const grassNormalMap = textureLoader.load("./grass_normal_map.png");
 
-const blocksBaseColor = textureLoader.load("./blocks-basecolor.jpg");
-const blocksNormalMap = textureLoader.load("./blocks-normal.jpg");
-const blocksHeightMap = textureLoader.load("./blocks-height.jpg");
-const blocksRoughness = textureLoader.load("./blocks-roughness.jpg");
-const blocksAmbientOcclusion = textureLoader.load("./blocks-ambientocclusion.jpg");
-
 const brickWallbasecolor = textureLoader.load("./Brick_Wall_017_basecolor.jpg");
 const brickWallnormalMap = textureLoader.load("./Brick_Wall_017_normal.jpg");
 const brickWallheightMap = textureLoader.load("./Brick_Wall_017_height.png");
