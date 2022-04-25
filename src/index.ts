@@ -65,15 +65,11 @@ const metalTilesambientOcclusionMap = textureLoader.load("./Metal_Tiles_003_ambi
 const metalTilesmetallic = textureLoader.load("./Metal_Tiles_003_metallic.jpg");
 
 // FLOOR
-for (var i = -50; i <= 50; i += 5) {
-    for (var j = -50; j <= 50; j += 5) {
-        const plane = new THREE.Mesh(new THREE.PlaneGeometry(5, 5, 1), new THREE.MeshPhongMaterial({ color: 0x0a7d15, normalMap: grassNormalMap }));
-        plane.position.x = i;
-        plane.position.z = j;
-        plane.rotation.x = - Math.PI / 2
-        scene.add(plane);
-    }
-}
+const plane = new THREE.Mesh(new THREE.PlaneGeometry(40, 40, 1), new THREE.MeshPhongMaterial({ color: 0x0a7d15, normalMap: grassNormalMap }));
+plane.rotation.x = - Math.PI / 2
+plane.material.normalMap.wrapS = plane.material.normalMap.wrapT = THREE.RepeatWrapping
+plane.material.normalMap.repeat.x = plane.material.normalMap.repeat.y = 5
+scene.add(plane);
 
 const plane1 = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), new THREE.MeshStandardMaterial({ map: brickWallbasecolor }))
 plane1.position.y = 3
